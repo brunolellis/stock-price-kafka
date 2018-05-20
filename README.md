@@ -28,7 +28,7 @@ Partitions of a topic are distributed over the servers in a Kafka cluster and th
 #### Producers
 Producers publish data to topics. The producer is responsible for choosing the partition in a topic where it wants to publish. This can be done in a round-robin fashion to balance load or according to some specific semantic, like data-affinity where some keys go to a specific partition.
 
-<img align="center" width="400" height="200" src="https://raw.githubusercontent.com/brunolellis/stock-price-kafka/master/images/producer-consumers.png">
+<img align="center" width="400" height="232" src="https://raw.githubusercontent.com/brunolellis/stock-price-kafka/master/images/producer-consumers.png">
 
 #### Consumers
 Consumers live in a *consumer group* and each record published on a topic is delivered to only one consumer within a consumer group.
