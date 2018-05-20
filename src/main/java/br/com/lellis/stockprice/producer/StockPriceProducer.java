@@ -13,7 +13,9 @@ import br.com.lellis.stockprice.stock.StockPrice;
 
 public class StockPriceProducer {
 
-	private static final String TOPIC = "stock-price";
+	public static final String TOPIC = "stock-price";
+	public static final Object KAFKA_URL = "localhost:9092";
+	
 	private static StockPriceProducer INSTANCE;
 	
 	private KafkaProducer<Long, String> producer;
@@ -22,7 +24,8 @@ public class StockPriceProducer {
 
 	private StockPriceProducer() {
 		Properties props = new Properties();
-		props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+		props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, KAFKA_URL);
+		props.put(ProducerConfig.CLIENT_ID_CONFIG, "stock-price-producer");
 		props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, LongSerializer.class.getName());
 		props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 

@@ -8,18 +8,22 @@ import br.com.lellis.stockprice.stock.StockPrice;
 
 /**
  * 
- * IMPROVEMENTS: - ExecutorService to handle multi thread context - this project
- * is just a "hello world" in kafka ecosystem, so I am using jackson to
- * serialize a simple POJO to json and reading it back; - the option might be to
- * use another serializer, something like avro or protocol buffer?
+ * IMPROVEMENTS: 
+ * 
+ * - ExecutorService to handle multi thread context 
+ * - this project is just a "hello world" in kafka ecosystem, so I am using jackson to
+ * simplify the serialization of a simple POJO to json and reading it back; 
+ * - an option might be to use another serializer, something like avro or protocol buffer?
  * 
  */
 public class MainAppStockPriceProducer {
 
 	public static void main(String[] args) {
 		var bovespa = List.of("PETR4", "ITSA4", "BBAS3", "CIEL3");
+		
 		var stockProducer = StockPriceProducer.getInstance();
-		for (int i = 0; i < 100; i++) {
+		
+		for (int i = 0; i < 1000; i++) {
 			bovespa.parallelStream()
 				.forEach(ticker -> {
 					var stock = new StockPrice(ticker, randomPrice());
