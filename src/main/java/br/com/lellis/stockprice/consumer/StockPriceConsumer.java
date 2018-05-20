@@ -61,9 +61,9 @@ public class StockPriceConsumer implements Runnable {
 
 	private final KafkaConsumer<Long, String> consumer;
 	private final List<String> topics;
-	private int id;
+	private String id;
 
-	public StockPriceConsumer(int id) {
+	public StockPriceConsumer(String id) {
 		this.id = id;
 		this.topics = List.of(StockPriceProducer.TOPIC);
 
@@ -79,11 +79,12 @@ public class StockPriceConsumer implements Runnable {
 	public void run() {
 		try {
 			consumer.subscribe(topics);
+			System.out.println(id + " subscribed to " + topics);
 
 			while (true) {
-				var stockPrices = consumer.poll(Long.MAX_VALUE);
+				var stockPrices = consumer.poll(1000);
 				stockPrices.forEach(s -> {
-					System.out.println(Thread.currentThread().getName() + ": offset=" + s.offset() + ", key=" + s.key() + ", value=" + s.value() + ", timestamp=" + s.timestamp());
+					System.out.println(Thread.currentThread().getName() + ": id=" + id + ", offset=" + s.offset() + ", key=" + s.key() + ", value=" + s.value() + ", timestamp=" + s.timestamp());
 				});
 			}
 		} catch (WakeupException e) {
