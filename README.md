@@ -13,7 +13,7 @@ What does that mean?
 It is like a log file, an append-only system ordered by time. Every incoming record is appended to the end of the "file" (log) and consumers read from left to right.
 
 #### Topic
-<img align="right" width="418" height="269" src="https://raw.githubusercontent.com/brunolellis/stock-price-kafka/master/images/topic.png"> Records are published into topics and each topic can have one or more partitions. And each partition is an ordered and immutable sequence of events that is appended to.
+<img align="left" width="418" height="269" src="https://raw.githubusercontent.com/brunolellis/stock-price-kafka/master/images/topic.png"> Records are published into topics and each topic can have one or more partitions. And each partition is an ordered and immutable sequence of events that is appended to.
 Every record in the partition is assigned a sequential id number called *offset* which uniquely identifies that record inside a partition.
 
 #### Retention
@@ -28,7 +28,7 @@ Partitions of a topic are distributed over the servers in a Kafka cluster and th
 #### Producers
 Producers publish data to topics. The producer is responsible for choosing the partition in a topic where it wants to publish. This can be done in a round-robin fashion to balance load or according to some specific semantic, like data-affinity where some keys go to a specific partition.
 
-<img align="right" width="400" height="200" src="https://raw.githubusercontent.com/brunolellis/stock-price-kafka/master/images/producer-consumers.png">
+<img align="center" width="400" height="200" src="https://raw.githubusercontent.com/brunolellis/stock-price-kafka/master/images/producer-consumers.png">
 
 #### Consumers
 Consumers live in a *consumer group* and each record published on a topic is delivered to only one consumer within a consumer group.
